@@ -16,6 +16,32 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->namespace('Admin')->group(function () {
 
     /**
+     * Profile x Permission
+     */
+    Route::get('permissions/{id}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
+
+    /**
+     * Permission x Profile
+     */
+    Route::get('profiles/{id}/permission/{idPermission}/detach', 'ACL\PermissionProfileController@detach_permissions_profile')->name('profiles.permissions.detach');
+    Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attach_permissions_profile')->name('profiles.permissions.attach');
+    // Route::any('profiles/{id}/permissions/search', 'ACL\PermissionProfileController@filter_permission_available')->name('profiles.permissions.available.search');
+    Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissions_available')->name('profiles.permissions.available');
+    Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+
+    /**
+     * Routes Permissions
+     */
+    Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
+    Route::resource('permissions', 'ACL\PermissionController');
+
+    /**
+     * Routes Profiles
+     */
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ACL\ProfileController');
+
+    /**
      * Routes Details Plan
      */
     Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plan.create');

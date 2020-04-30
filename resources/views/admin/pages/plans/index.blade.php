@@ -47,7 +47,7 @@
                         <td>{{ $plan->name }}</td>
                         <td>R$ {{ number_format($plan->price, 2, ',', '.') }}</td>
                         <td>
-                            <div class="d-inline">
+                            <div class="d-inline justify-content-center">
                                 <form action="{{ route('plans.destroy', $plan->url) }}" method="POST" class="form form-inline">
                                     @csrf
                                     @method('DELETE')

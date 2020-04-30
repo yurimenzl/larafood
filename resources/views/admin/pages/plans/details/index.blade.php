@@ -42,7 +42,7 @@
                     <tr class="text-center">
                         <td>{{ $detail->name }}</td>
                         <td>
-                            <div class="d-inline">
+                            <div class="d-inline justify-content-center">
                                 <form action="{{ route('details.plan.destroy', [$plan->url, $detail->id]) }}" method="POST" class="form form-inline">
                                     @csrf
                                     @method('DELETE')
